@@ -1,0 +1,300 @@
+/* ==========================================================================
+   FLASHCARDS - UI/UX PRO MAX (Apple / Raycast 3D Stage)
+   ========================================================================== */
+
+.flashcards-wrapper {
+  max-width: 840px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Flashcards Stats Subheader */
+.fc-stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.fc-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.fc-stat-item.review {
+  color: var(--danger);
+}
+
+.fc-stat-item.mastered {
+  color: var(--success);
+}
+
+/* 3D Flashcard Stage */
+.flashcard-stage {
+  perspective: 1400px;
+  width: 100%;
+  height: 380px;
+  margin: 4px 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.5s var(--ease-spring);
+  transform-style: preserve-3d;
+}
+
+.flashcard-stage.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.flashcard-stage:hover .flashcard-face {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-lg);
+}
+
+.flashcard-face.back {
+  transform: rotateY(180deg);
+  background-color: var(--bg-surface);
+  border-color: var(--primary-border);
+}
+
+.fc-face-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fc-type-badge {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background-color: var(--bg-app);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+}
+
+.fc-face-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fc-face-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.fc-main-text {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--text-primary);
+  max-width: 90%;
+  letter-spacing: -0.015em;
+}
+
+.fc-reference-tag {
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--primary-border);
+}
+
+.fc-face-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fc-hint-pill {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Bottom Action Toolbar (Iconic Solvely Buttons) */
+.fc-action-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 24px;
+}
+
+.fc-toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+/* Switch Toggle */
+.switch-input {
+  display: none;
+}
+
+.switch-label {
+  width: 42px;
+  height: 22px;
+  background-color: var(--border-color);
+  border-radius: var(--radius-full);
+  position: relative;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.switch-label::after {
+  content: '';
+  position: absolute;
+  top: 2.5px;
+  left: 3px;
+  width: 17px;
+  height: 17px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform var(--transition-fast);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+}
+
+.switch-input:checked + .switch-label {
+  background-color: var(--primary);
+}
+
+.switch-input:checked + .switch-label::after {
+  transform: translateX(19px);
+}
+
+/* Iconic Rate Action Buttons (Red X & Green Check) */
+.fc-rating-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.btn-fc-circle {
+  width: 58px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid;
+  background: var(--bg-surface);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-fc-circle.rate-wrong {
+  border-color: var(--danger-border);
+  color: var(--danger);
+}
+
+.btn-fc-circle.rate-wrong:hover {
+  background-color: var(--danger-bg);
+  border-color: var(--danger);
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px var(--danger-glow);
+}
+
+.btn-fc-circle.rate-correct {
+  border-color: var(--success-border);
+  color: var(--success);
+}
+
+.btn-fc-circle.rate-correct:hover {
+  background-color: var(--success-bg);
+  border-color: var(--success);
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px var(--success-glow);
+}
+
+.fc-side-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* List Mode View */
+.fc-list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fc-list-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 18px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 20px;
+  align-items: center;
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-fast);
+}
+
+.fc-list-card:hover {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.fc-list-front {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+.fc-list-back {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  border-left: 2px solid var(--border-subtle);
+  padding-left: 16px;
+}

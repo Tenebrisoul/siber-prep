@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StudyAppSchema",
+  "type": "object",
+  "required": ["title", "sections"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Ders veya çalışma konusunun ana başlığı"
+    },
+    "version": {
+      "type": "string",
+      "description": "Veri sürümü"
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "subtopics"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "subtopics": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "title"],
+              "properties": {
+                "id": { "type": "string" },
+                "title": { "type": "string" },
+                "article": {
+                  "type": "string",
+                  "description": "Konu anlatımı (Markdown veya HTML destekli)"
+                },
+                "flashcards": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["id", "front", "back"],
+                    "properties": {
+                      "id": { "type": "string" },
+                      "front": { "type": "string", "description": "Kartın ön yüzü (Kavram / Soru)" },
+                      "back": { "type": "string", "description": "Kartın arka yüzü (Cevap / Açıklama)" },
+                      "reference": { "type": "string", "description": "Kaynak / İpucu notu" }
+                    }
+                  }
+                },
+                "quiz": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["id", "question", "options", "correctIndex"],
+                    "properties": {
+                      "id": { "type": "string" },
+                      "question": { "type": "string" },
+                      "options": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                      },
+                      "correctIndex": {
+                        "type": "integer",
+                        "description": "Doğru şıkkın 0 tabanlı indeksi (0=A, 1=B, 2=C, 3=D, 4=E)"
+                      },
+                      "explanation": {
+                        "type": "string",
+                        "description": "Cevaplandıktan sonra gösterilecek detaylı çözüm açıklaması"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
